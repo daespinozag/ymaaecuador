@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela Shizen YMAA</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Icono_YMAA.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-rojo-shizen: #e12d2d; 
+            --color-texto-dark: #1a1a1a;
+            --color-texto-suave: #4a4a4a;
+            --color-fondo-blanco: #ffffff;
+            --color-gris-claro: #f8f9fa;
+            --font-main: 'Inter', sans-serif;
+            --font-headings: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--color-texto-dark);
+            background-color: var(--color-fondo-blanco);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-headings);
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--color-fondo-blanco);
+            padding: 20px 0;
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-main {
+            max-width: 240px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .affiliation-bar {
+            background: #f1f1f1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-texto-suave);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 60px 0;
+            display: flex;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--color-texto-suave);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Botones --- */
+        .btn-shizen {
+            background-color: var(--color-rojo-shizen);
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-shizen:hover {
+            background-color: #c42626;
+            transform: translateY(-2px);
+        }
+
+        /* --- Beneficios --- */
+        .beneficios-section {
+            padding: 80px 0;
+            background-color: var(--color-texto-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .beneficio-card i {
+            font-size: 2rem;
+            color: var(--color-rojo-shizen);
+            margin-bottom: 20px;
+        }
+
+        .beneficio-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .beneficio-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* --- Disciplinas --- */
+        .section-padding { padding: 80px 0; }
+        .bg-light { background-color: var(--color-gris-claro); }
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.2rem; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .disciplinas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card-program {
+            background: white;
+            border-radius: 20px; /* Bordes más redondeados */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra más suave */
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card-program:hover {
+            transform: translateY(-5px); /* Efecto de levante al pasar el mouse */
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 220px;     /* Esto iguala el tamaño de las 3 imágenes */
+            object-fit: cover;  /* Esto hace el "recorte" automático sin deformar */
+            display: block;
+        }
+
+        .card-body {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .card-body h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-body p {
+            font-size: 0.85rem;
+            color: var(--color-texto-suave);
+            margin-bottom: 20px;
+        }
+
+        .card-footer-info {
+            padding: 15px 30px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-footer-info .label {
+            color: var(--color-texto-suave);
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            display: block;
+        }
+
+        /* --- Linaje Section --- */
+        .linaje-section {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .linaje-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* --- Linaje Section Actualizada --- */
+        .linaje-text {
+            padding-right: 30px; /* Evita que el texto pegue con la imagen */
+        }
+
+        .linaje-text p {
+            color: var(--color-texto-suave);
+            margin-bottom: 20px;
+            text-align: left;    /* Alineación natural a la izquierda */
+            hyphens: none;       /* Desactiva los guiones */
+            max-width: 600px;    /* Evita líneas demasiado largas y cansadas */
+        }
+
+        /* --- Ubicación y Contacto --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        .contact-details {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info-block {
+            margin-bottom: 40px;
+        }
+
+        .contact-info-block h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid var(--color-rojo-shizen);
+            padding-left: 15px;
+        }
+
+        .contact-info-block p {
+            font-size: 1rem;
+            color: var(--color-texto-suave);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info-block i {
+            color: var(--color-rojo-shizen);
+            width: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 0 30px;
+            background: white;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-logo {
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .linaje-text p {
+            color: var(--color-texto-suave);
+            margin-bottom: 20px;
+            /* Al borrar lo anterior, por defecto será: text-align: left; e hyphens: none; */
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* --- Estilos FAQ Centrada y Moderna --- */
+        .faq-section {
+            background-color: var(--color-gris-claro);
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 850px; 
+            margin: 0 auto;   
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .faq-item summary {
+            padding: 22px 30px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: '\f078'; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--color-rojo-shizen);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            padding: 0 30px 25px 30px;
+            color: var(--color-texto-suave);
+            line-height: 1.6;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero-grid, .disciplinas-grid, .contact-grid, .linaje-grid {grid-template-columns: 1fr; } 
+            .hero, .linaje-section {text-align: center; }
+            .hero-image { height: 350px; margin-top: 30px; }
+            .contact-details { text-align: center; }
+            .contact-info-block h4 { border-left: none; padding-left: 0; }
+            .contact-info-block p { justify-content: center; }
+            .faq-item summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .linaje-text {
+               padding: 0 10px; /* Añade un margen pequeño en móviles */    
+            }
+
+            .linaje-text p {
+                margin-left: auto;
+                margin-right: auto; /* Centra el texto si el contenedor se centra */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="Logo_YMAA_Horizontal.png" alt="YMAA Ecuador" class="logo-main">
+        </div>
+    </header>
+
+    <div class="affiliation-bar">
+        Escuela de Artes Internas afiliada a YMAA Internacional
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>Enseñamos Taichi y Chikung en Guayaquil desde el año 2011</h1>
+                <p>Preservamos la esencia de las artes chinas tradicionales vinculadas a las Artes Marciales y a la Medicina China. Únete a nuestra comunidad</p>
+                <a href="https://api.whatsapp.com/send/?phone=593968548185&text=Hola%21+Vi+la+p%C3%A1gina+de+YMAA Ecuador+y+me+interesa+aprender.+%C2%BFMe+podr%C3%ADan+dar+informaci%C3%B3n+sobre+las+clases+de+Taichi+y+Chikung" target="_blank" class="btn-shizen">Solicitar información</a>
+            </div>
+            <div class="hero-image">
+                <img src="Taichi Hero.png" alt="Tai Chi Chuan">
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Rápidos -->
+    <section class="beneficios-section">
+        <div class="container">
+            <h2 style="text-transform: uppercase; letter-spacing: 2px;">¿Por qué practicar Artes Internas?</h2>
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>Calma Mental</h4>
+                    <p>Desarrolla la concentración, gestiona las emociones por medio de la meditación activa.</p>
+                </div>
+                <div class="beneficio-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Salud Integral</h4>
+                    <p>Mejora la circulación, la función de los órganos internos y fortalece el sistema inmunológico.</p>
+                </div>
+                <div class="beneficio-card">
+                    <i class="fas fa-child"></i>
+                    <h4>Flexibilidad</h4>
+                    <p>Aumenta la movilidad articular, alivia el dolor y corrige la postura corporal.</p>
+                </div>
+                <div class="beneficio-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Energía Vital</h4>
+                    <p>Cultiva y regula tu energía interna (Qi) para tener una mejora calidad de vida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programas Horizontal -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Nuestros Clases</h2>
+            
+            <div class="disciplinas-grid">
+                
+                <!-- Tarjeta Chikung -->
+                <div class="card-program">
+                    <div class="card-img">
+                        <img src="Qigong.jpg" alt="Clase de Chikung">
+                    </div>
+                    <div class="card-body">
+                        <h3>Chikung: Práctica de Cultivo Energético</h3>
+                        <p>Ejercicios de respiración y de regulación interna diseñados para fortalecer el sistema inmune e integrar cuerpo, mente y espíritu.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <div>
+                            <span class="label">Días</span>
+                            Lunes y Miércoles
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="label">Horario</span>
+                            07:00 AM
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Tai Chi -->
+                <div class="card-program">
+                    <div class="card-img">
+                        <img src="Taichi.jpg" alt="Clase de Tai Chi">
+                    </div>
+                    <div class="card-body">
+                        <h3>Taichi Chuan estilo Yang YMAA</h3>
+                        <p>Arte marcial interno que armoniza respiración y movimiento para la salud y longevidad. En nivel avanzado es útil como método de autodefensa.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <div>
+                            <span class="label">Días</span>
+                            Viernes
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="label">Horario</span>
+                            07:00 AM
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Staff -->
+                <div class="card-program">
+                    <div class="card-img">
+                        <img src="TaichiStaff.png" alt = "Clase de Tai Chi Staff">
+                    </div>
+                    <div class="card-body">
+                        <h3>Entrenamiento con Vara (Staff)</h3>
+                        <p>Disciplina que combina técnicas del Shaolin Kungfu y del Taichi para potencia la coordinación motriz y el enfoque mental.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <div>
+                            <span class="label">Días</span>
+                            Sábados
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="label">Horario</span>
+                            07:00 AM
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Linaje YMAA -->
+    <section class="linaje-section container">
+        <div class="linaje-grid">
+            <div class="linaje-text">
+                <h2 class="section-title" style="margin-bottom: 30px;">Sobre la YMAA</h2>
+                <p>La YMAA (Yang's Martial Arts Association), Asociación de Artes Marciales Yang es una organización fundada por el maestro Dr. Yang, Jwing-Ming.</p>
+                <p>Nuestras clases están alineadas con el currículo internacional de la YMAA, asegurando que cada disciplina que aprendas tenga una base sólida y auténtica. Al entrenar con nosotros, te conectas a una red global de practicantes dedicados y comprometidos con la transmisión de estas artes.</p>
+                <p>La YMAA es dirigida en Latinoamérica por Daniel Chadud y en Guayaquil Ecuador por Daniel Andrés Espinoza.</p>
+                <a href="https://api.whatsapp.com/send/?phone=593968548185&text=Hola%21+Vi+la+p%C3%A1gina+de+YMAA Ecuador+y+me+interesa+aprender.+%C2%BFMe+podr%C3%ADan+dar+informaci%C3%B3n+sobre+las+clases+de+Taichi+y+Chikung" target="_blank" class="btn-shizen" style="background-color: var(--color-texto-dark);">Saber más de nuestra Escuela</a>
+            </div>
+            <div class="linaje-image">
+                <img src="YMAA Linaje.jpg" alt="YMAA Internacional" style="width: 100%; border-radius: 4px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes mejoradas -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Preguntas Frecuentes</h2>
+            
+            <div class="faq-container">
+                
+                <details class="faq-item">
+                    <summary>¿Necesito experiencia previa o flexibilidad?</summary>
+                    <div class="faq-content">
+                        No, en absoluto. El Taichi y el Chikung en YMAA se enseñan desde las bases. El progreso es gradual y respetuoso con tu condición física actual; la flexibilidad y el equilibrio se ganan con la práctica.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Hay un límite de edad para practicar?</summary>
+                    <div class="faq-content">
+                        Nuestras clases son aptas para adultos de todas las edades. Son ideales tanto para jóvenes que buscan enfoque marcial como para adultos mayores que desean mejorar su salud y vitalidad.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Qué vestimenta debo llevar?</summary>
+                    <div class="faq-content">
+                        Recomendamos ropa cómoda y ligera (pantalón deportivo largo y camiseta). Para prácticas al aire libre es importante usar calzado de suela plana y flexible (tipo zapatillas de lona o de artes marciales) para una mejor estabilidad. Si las clases son en nuestro espacio entrenamos sin zapatos.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Tengo problemas de salud puedo practicar?</summary>
+                    <div class="faq-content">
+                        Sí. Estas artes son reconocidas para ayudar a mejorar diversas condiciones, desde la circulación sanguínea y el equilibrio hasta la movilidad articular y la capacidad respiratoria. Son ideales para complementar el tratamiento de condiciones crónicas y fortalecer el sistema inmunológico; sin embargo, recomendamos una evaluación médica previa para adaptar la práctica a tus necesidades específicas.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Cómo reservo mi clase de prueba en Guayaquil?</summary>
+                    <div class="faq-content">
+                        Puedes agendar tu primera clase haciendo clic en el botón de WhatsApp. Te confirmaremos disponibilidad y te daremos los detalles de llegada a nuestra sede.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación y Contacto -->
+    <section class="section-padding" id="contacto">
+        <div class="container">
+            <h2 class="section-title text-center">¡Contáctanos!</h2>
+            <div class="contact-grid">
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.9506727287135!2d-79.90777242504134!3d-2.1724509372367296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6dc0f0e7f62f%3A0x30c77e08687e3d9c!2sYMAA%20ECUADOR!5e0!3m2!1ses-419!2sec!4v1771843327440!5m2!1ses-419!2sec" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="contact-details">
+                    <div class="contact-info-block">
+                        <h4>Sede en Guayaquil</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Cedros # 221 y Calle Primera, Urdesa Central</p>
+                        <p><i class="fas fa-clock"></i> Clases presenciales desde las 07:00 AM</p>
+                    </div>
+                    
+                    <div class="contact-info-block">
+                        <h4>Contacto Directo</h4>
+                        <p><i class="fab fa-whatsapp"></i> WhatsApp: (+593) 96 854 8185</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:ymaa@shizen.ec" style="color: inherit; text-decoration: none;">ymaa@shizen.ec</a></p>
+                    </div>
+
+                    <a href="https://api.whatsapp.com/send/?phone=593968548185&text=Hola%21+Vi+la+p%C3%A1gina+de+YMAA Ecuador+y+me+interesa+aprender.+%C2%BFMe+podr%C3%ADan+dar+informaci%C3%B3n+sobre+las+clases+de+Taichi+y+Chikung" target="_blank" class="btn-shizen" style="width: 100%;">
+                        Escríbenos ahora
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 15px; font-size: 0.75rem; text-transform: uppercase; color: #999; letter-spacing: 1px;">Somos parte de Escuela Shizen</p>
+            <a href="https://shizen.ec" target="_blank">
+                <img src="Shizen Horizontal.png" alt="Shizen Medicina Oriental" class="footer-logo">
+            </a>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #bbb;">&copy; 2026 YMAA ECUADOR. Artes Internas.</p>
+        </div>
+    </footer>
+
+    <a href="https://api.whatsapp.com/send/?phone=593968548185&text=Hola%21+Vi+la+p%C3%A1gina+de+YMAA Ecuador+y+me+interesa+aprender.+%C2%BFMe+podr%C3%ADan+dar+informaci%C3%B3n+sobre+las+clases+de+Taichi+y+Chikung" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
